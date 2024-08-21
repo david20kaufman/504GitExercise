@@ -1,16 +1,19 @@
-def function1(a):
-    b = dict()
-    for c in a:
-        if c not in b:
-            b[c] = 1
-        else:
-            b[c] += 1
-    return b
+def count_amino_acids(seq: str):
+    aa_counter = dict()
+    for aa in seq:
+        if aa not in aa_counter: # Encounter a new amino acid
+            aa_counter[aa] = 1
+        else: # Count an amino acid already found
+            aa_counter[aa] += 1
+    return aa_counter
 
-def function2(a):
+def print_frequencies(aa_counts: dict):
+    total = sum(aa_counts.values()) # Count the total number of amino acids
     print('freqs')
-    total = float(sum([a[b] for b in a.keys()]))
-    for b in a.keys():
-        print(b + ':' + str(a[b]/total))
+    for aa, count in aa_counts.items(): # Iterate through all amino acids and their counts
+        print(f'{aa}:{count/total}')
 
-function2(function1('ATCTGACGCGCGCCGC'))
+seq = 'ATCTGACGCGCGCCGC'
+aa_counts = count_amino_acids(seq)
+print_frequencies(aa_counts)
+        
